@@ -24,12 +24,13 @@ export default defineConfig({
   // The closed beta's waitlist. The home page's form records `waitlist_joined` with the person's
   // address, which puts them on the list and answers with their own referral link. Joining gives no
   // access. A maintainer lets a person in with `npx cmokit waitlist activate <email> --site
-  // https://app.cmokit.ai`, which sends them messages/youre-in.md once; its {{link}} is `link`.
+  // https://cmokit.ai`, which sends them messages/youre-in.md once; its {{link}} is `link`.
   waitlist: {
     event: 'waitlist_joined',
     referral: 'ref',
     template: 'youre-in',
-    // Where an activated person goes next: the content plugin, which they add to Claude.
+    // Where an activated person goes next: the content plugin, which they add to Claude. Pending:
+    // an account page on app.cmokit.ai, once the hosted app serves one there.
     link: 'https://github.com/cmokit/cmokit/tree/main/plugins/cmokit-content',
   },
 });

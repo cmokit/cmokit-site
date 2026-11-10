@@ -1,8 +1,9 @@
 # This site
 
-CMO Kit's own site at app.cmokit.ai: an Astro site on GitHub Pages, made from CMOkit's starter
+CMO Kit's marketing site at cmokit.ai and www.cmokit.ai: an Astro site on GitHub Pages, made from CMOkit's starter
 (`npm create cmokit`), with a CMOkit edge (a Cloudflare Worker) in front of it that runs
-landing-page experiments on PostHog and keeps the closed beta's waitlist.
+landing-page experiments on PostHog and keeps the closed beta's waitlist. Visitors join the
+waitlist here; an activated person's account lives in the hosted app, which is not this site.
 
 The home page is a placeholder holding the waitlist form, until the site is designed from CMO Kit's
 design system.
@@ -59,8 +60,8 @@ design system.
   link that message gives. Joining gives no access, and sends nothing.
 - The edge answers a join with the person's own referral link, which the page shows. The list is
   ranked by how many people joined through each person's link, then by who joined first.
-- A maintainer reads the list with `npx cmokit waitlist --site https://app.cmokit.ai` and lets a
-  person in with `npx cmokit waitlist activate <email> --site https://app.cmokit.ai`. Both read the
+- A maintainer reads the list with `npx cmokit waitlist --site https://cmokit.ai` and lets a
+  person in with `npx cmokit waitlist activate <email> --site https://cmokit.ai`. Both read the
   waitlist key from `CMOKIT_WAITLIST_KEY` in the maintainer's shell. Never ask for the key itself.
 - Activating sends `messages/youre-in.md` once, with `{{link}}` replaced by the waitlist's `link`.
   Until the secret `SENDGRID_API_KEY` is set, nothing is sent and the maintainer tells the person.
