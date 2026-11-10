@@ -1,8 +1,9 @@
 # CMO Kit's site
 
-CMO Kit's marketing site at cmokit.ai and www.cmokit.ai, made from CMOkit's starter (`npm create cmokit`). Today it holds the
-closed beta's waitlist: a form that puts a person on the list and gives them their own referral
-link, and the "you're in" email a maintainer sends when they activate someone.
+CMO Kit's marketing site at cmokit.ai and www.cmokit.ai, made from CMOkit's starter
+(`npm create cmokit`). Today it holds the closed beta's waitlist: a form that puts a person on the
+list and gives them their own referral link, and the "you're in" email sent when someone is
+activated on CMO Kit's account page at app.cmokit.ai.
 
 ## Set up
 
@@ -13,11 +14,14 @@ key yourself; a key never goes in a chat, an issue or a file in this repository.
    domain to `cmokit.ai`. GitHub Pages then sends `www.cmokit.ai` to it.
 2. **Cloudflare.** In the `cmokit.ai` zone, add GitHub Pages' four apex `A` records for `cmokit.ai`
    and a `CNAME` for `www` pointing at `cmokit.github.io`, all proxied, with SSL/TLS set to Full.
-   Add the repository variable `CLOUDFLARE_ACCOUNT_ID` and the secret `CLOUDFLARE_API_TOKEN` (the
-   "Edit Cloudflare Workers" template, for the `cmokit.ai` zone).
+   Add the repository variable `CLOUDFLARE_ACCOUNT_ID`, which must be hosted CMO Kit's own account,
+   since its content server binds this site's lifecycle, and the secret `CLOUDFLARE_API_TOKEN` (the
+   "Edit Cloudflare Workers" template, for that account and the `cmokit.ai` zone).
 3. **PostHog.** Put the site's project key in `cmokit.config.ts`.
-4. **The waitlist key.** Make a long random string and save it as the secret `WAITLIST_KEY`. Keep
-   the same string in your shell as `CMOKIT_WAITLIST_KEY` to read and activate the list.
+4. **Hosted CMO Kit.** After this site's first deploy, in cmokit/cmokit's `production` environment,
+   save the variable `WAITLIST_CUSTOMER` with your brand's slug from your account page, then run
+   **deploy-hosted** again. Your account page then lists the waitlist with an Activate button for
+   each person.
 5. **SendGrid, when email is ready.** Authenticate `cmokit.ai` under Settings > Sender
    Authentication, unless hosted sign-in codes already did. Create an unsubscribe group, and fill
    in `messaging` in `cmokit.config.ts`: the postal address and the group's id. Create an API key
@@ -30,13 +34,10 @@ A push to `main` deploys the site, the lifecycle and the edge.
 
 ## The waitlist
 
-```
-npx cmokit waitlist --site https://cmokit.ai
-npx cmokit waitlist activate <email> --site https://cmokit.ai
-```
-
-The first lists everyone, those who referred the most people first. The second lets one person in
-and sends them `messages/youre-in.md` once. Both read the key from `CMOKIT_WAITLIST_KEY`.
+Your account page at app.cmokit.ai lists everyone, those who referred the most people first.
+Activating a person there lets them in and sends them `messages/youre-in.md` once. The
+`cmokit waitlist` command does the same from a terminal, but only with the secret `WAITLIST_KEY`
+set here and in your shell as `CMOKIT_WAITLIST_KEY`, which the account page doesn't need.
 
 ## Work on it
 

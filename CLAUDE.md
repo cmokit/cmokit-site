@@ -60,9 +60,10 @@ design system.
   link that message gives. Joining gives no access, and sends nothing.
 - The edge answers a join with the person's own referral link, which the page shows. The list is
   ranked by how many people joined through each person's link, then by who joined first.
-- A maintainer reads the list with `npx cmokit waitlist --site https://cmokit.ai` and lets a
-  person in with `npx cmokit waitlist activate <email> --site https://cmokit.ai`. Both read the
-  waitlist key from `CMOKIT_WAITLIST_KEY` in the maintainer's shell. Never ask for the key itself.
+- A maintainer reads the list and activates people on CMO Kit's account page at app.cmokit.ai,
+  which asks this site's lifecycle over its service binding, with no waitlist key (ADR-0042 in
+  cmokit/cmokit). `npx cmokit waitlist` does the same from a terminal only when the secret
+  `WAITLIST_KEY` is set and is in the shell as `CMOKIT_WAITLIST_KEY`. Never ask for the key itself.
 - Activating sends `messages/youre-in.md` once, with `{{link}}` replaced by the waitlist's `link`.
   Until the secret `SENDGRID_API_KEY` is set, nothing is sent and the maintainer tells the person.
 - Hosted CMO Kit asks this site's lifecycle whether a signed-in person's address is activated, so

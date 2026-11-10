@@ -23,8 +23,8 @@ export default defineConfig({
   },
   // The closed beta's waitlist. The home page's form records `waitlist_joined` with the person's
   // address, which puts them on the list and answers with their own referral link. Joining gives no
-  // access. A maintainer lets a person in with `npx cmokit waitlist activate <email> --site
-  // https://cmokit.ai`, which sends them messages/youre-in.md once; its {{link}} is `link`.
+  // access. A maintainer lets a person in on CMO Kit's account page at app.cmokit.ai, which sends
+  // them messages/youre-in.md once; its {{link}} is `link`.
   waitlist: {
     event: 'waitlist_joined',
     referral: 'ref',
