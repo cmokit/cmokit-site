@@ -1,0 +1,31 @@
+---
+// The closed beta's waitlist. A placeholder page until the site is designed from CMO Kit's design
+// system: it holds only the form and plain words.
+import Page from '../layouts/Page.astro';
+---
+
+<Page title="CMO Kit closed beta">
+  <h1>CMO Kit closed beta</h1>
+  <p>Join the waitlist and we'll email you when your spot opens.</p>
+  <form data-cmokit-convert="waitlist_joined">
+    <input type="email" name="email" placeholder="you@example.com" required />
+    <button type="submit">Join the waitlist</button>
+  </form>
+  <p class="fine">Joining sends you nothing until your spot opens. Unsubscribe in one click from that email.</p>
+  <div class="thanks">
+    <p>You're on the list. We'll email you when your spot opens.</p>
+    <p class="referral" hidden>Share your own link, and everyone who joins through it moves you up the list: <a></a></p>
+  </div>
+  <script>
+    // The edge answers a join with the person's own referral link (ADR-0014 in cmokit/cmokit).
+    document.addEventListener('cmokit:converted', (event) => {
+      const referral = (event as CustomEvent<{ referral?: string }>).detail.referral;
+      const line = document.querySelector<HTMLElement>('.referral');
+      const link = line?.querySelector('a');
+      if (!referral || !line || !link) return;
+      link.href = referral;
+      link.textContent = referral;
+      line.hidden = false;
+    });
+  </script>
+</Page>

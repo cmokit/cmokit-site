@@ -1,0 +1,12 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "cmokit-site-edge",
+  "main": "edge/worker.ts",
+  "compatibility_date": "2026-10-01",
+  // The Worker runs in front of the site's own domain, whose DNS record is proxied by Cloudflare and
+  // points at GitHub Pages: app.cmokit.ai.
+  "routes": [{ "pattern": "app.cmokit.ai/*", "zone_name": "cmokit.ai" }],
+  // The lifecycle Worker in lifecycle/, which sends leads their messages. Deployed first.
+  "services": [{ "binding": "LIFECYCLE", "service": "cmokit-site-lifecycle" }],
+  "observability": { "enabled": true }
+}
