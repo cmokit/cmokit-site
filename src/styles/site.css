@@ -114,6 +114,10 @@ a:hover { color: var(--color-accent-strong); }
   font-weight: var(--weight-medium);
 }
 .referral__copy .button { flex: 0 0 auto; }
+.referral__code {
+  flex: 1 1 auto; font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: var(--text-base); letter-spacing: 0.04em;
+}
 .waitlist__note { font-size: var(--text-sm); color: var(--color-ink-muted); }
 
 /* Card */
