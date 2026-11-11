@@ -17,10 +17,10 @@ privacy policy says; don't link Google Fonts or any other host.
 - The hosted waitlist takes joins only from pages on the sites listed on the account page, which is
   `https://cmokit.ai`. A page served from another address, including `www` or a local server, is
   refused.
-- The form is a funnel: join with an email, then the person's place and referral link, then Connect
-  Instagram, which stays hidden until the hosted waitlist offers it. Keep the field names (`email`,
-  and `website`, a field only bots fill in), every `data-cmokit-*` attribute and the script's logic
-  as the account page gives them. Style it freely. The script fires `cmokit:joined` for any hook.
+- The form is a funnel: join with an email, then the person's place and referral link, then a code
+  to comment on CMO Kit's Reels, which stays hidden until the hosted waitlist offers it. Keep the
+  field names (`email`, and `website`, a field only bots fill in), every `data-cmokit-*` attribute
+  and the script's logic as the account page gives them. Style it freely. The script fires `cmokit:joined` for any hook.
 - The form sends the page's address, and the hosted waitlist keeps its `utm_` tags with each signup,
   so links in posts can carry them.
 - Joining sends nothing. Activation happens on the account page, and the hosted waitlist sends no

@@ -1,7 +1,7 @@
 ---
 // CMO Kit's home page and the closed beta's waitlist. The form and its script are the ones CMO
 // Kit's account page at app.cmokit.ai gives for this brand: join, then place and referral link,
-// then Connect Instagram, which the hosted waitlist shows only once it offers it. Keep the field
+// then an Instagram code to comment on our Reels, which the hosted waitlist shows only once it offers it. Keep the field
 // names, the data attributes and the script as given, and style freely. Joins are taken only from
 // pages on https://cmokit.ai. The weekly review is an illustration, and the page says so.
 import Page from '../layouts/Page.astro';
@@ -27,13 +27,16 @@ import Page from '../layouts/Page.astro';
               <p>Boost your place: share your referral link. Everyone who joins through it moves you up.</p>
               <div class="referral__copy">
                 <a class="referral__link" data-cmokit-referral></a>
-                <button class="button button--quiet button--small" type="button" data-copy-referral>Copy link</button>
+                <button class="button button--quiet button--small" type="button" data-copy="[data-cmokit-referral]">Copy link</button>
               </div>
             </div>
             <div class="referral" data-cmokit-instagram hidden>
-              <p>Boost even more: connect your Instagram, then comment on our Reels. Each Reel you comment on moves you up.</p>
-              <p><a class="button button--primary button--small" data-cmokit-connect>Connect Instagram</a></p>
-              <p class="muted small">This needs an Instagram business or creator account. You can switch to one in Instagram's settings.</p>
+              <p>Boost even more: comment this code on one of our Reels, then comment on more. Each Reel you comment on moves you up.</p>
+              <div class="referral__copy">
+                <strong class="referral__code" data-cmokit-code></strong>
+                <button class="button button--quiet button--small" type="button" data-copy="[data-cmokit-code]">Copy code</button>
+              </div>
+              <p><a data-cmokit-account></a></p>
             </div>
           </div>
           <p class="waitlist__note">Joining sends you nothing. We'll let you know when your spot opens. Joining isn't beta access: read the <a href="/beta-terms/">closed beta terms</a> you'll accept then, and our <a href="/privacy/">privacy policy</a>.</p>
@@ -150,7 +153,10 @@ import Page from '../layouts/Page.astro';
       join.hidden = true;
       box.querySelector('[data-cmokit-joined]').hidden = false;
       if (answer.instagram) {
-        box.querySelector('[data-cmokit-connect]').href = answer.instagram;
+        box.querySelector('[data-cmokit-code]').textContent = answer.instagram.code;
+        const account = box.querySelector('[data-cmokit-account]');
+        account.href = 'https://www.instagram.com/' + encodeURIComponent(answer.instagram.account) + '/';
+        account.textContent = '@' + answer.instagram.account + ' on Instagram';
         box.querySelector('[data-cmokit-instagram]').hidden = false;
       }
       box.dispatchEvent(new CustomEvent('cmokit:joined', { bubbles: true, detail: { referral: answer.referral, place: answer.place ?? null } }));
@@ -159,18 +165,20 @@ import Page from '../layouts/Page.astro';
   </script>
 
   <script is:inline>
-  // The copy block around the referral link. It only reads the link the script above fills in.
-  document.querySelectorAll('[data-copy-referral]').forEach((button) => {
+  // The copy blocks for the referral link and the Instagram code. They only read what the script
+  // above fills in.
+  document.querySelectorAll('[data-copy]').forEach((button) => {
+    const label = button.textContent;
     button.addEventListener('click', async () => {
-      const link = button.closest('.referral').querySelector('[data-cmokit-referral]');
+      const target = button.closest('.referral').querySelector(button.dataset.copy);
       try {
-        await navigator.clipboard.writeText(link.href);
+        await navigator.clipboard.writeText(target.href || target.textContent);
         button.textContent = 'Copied';
       } catch {
-        getSelection().selectAllChildren(link);
+        getSelection().selectAllChildren(target);
         button.textContent = 'Press Ctrl+C or ⌘C';
       }
-      setTimeout(() => { button.textContent = 'Copy link'; }, 2500);
+      setTimeout(() => { button.textContent = label; }, 2500);
     });
   });
   </script>

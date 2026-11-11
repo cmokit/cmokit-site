@@ -53,7 +53,7 @@ fields. Page width 72rem, reading width 40rem, gutter 16 to 32px.
   attributes and its script as the account page gives them.
 - **Referral**: `.referral` is each box shown after joining. The first holds the place line
   (`.referral__place`) and the person's link in a copy block (`.referral__copy`) with a Copy link
-  button, whose script is separate and only reads the link. The second is the Connect Instagram step.
+  button, whose script is separate and only reads the link. The second is the Instagram step, whose code sits in the same copy block.
 - **Card**: `.card`, a surface with a hairline border. `.grid` lays cards out and wraps on phones.
 - **Steps**: `.steps`, an ordered list of cards, numbered automatically.
 - **Nav** and **footer**: in `src/layouts/Page.astro`, on every page.
