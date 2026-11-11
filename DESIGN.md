@@ -60,6 +60,6 @@ fields. Page width 72rem, reading width 40rem, gutter 16 to 32px.
 
 ## Words
 
-Plain, warm and specific, in the customer's words (circle, your people, the room). No em dashes,
-no hype, no funnel or growth talk, no health or healing claims. Say what isn't proven yet. An
+Plain, warm and specific, written for independent creators: people who make content for a living,
+usually for themselves. No em dashes, no hype, no funnel or growth talk, no health or healing claims. Say what isn't proven yet. An
 example on the page is labeled as one.

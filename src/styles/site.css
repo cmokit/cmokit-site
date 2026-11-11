@@ -122,7 +122,7 @@ a:hover { color: var(--color-accent-strong); }
 
 .hero__join { display: grid; gap: var(--space-3); }
 
-/* Monday note: an illustration of the weekly answer, not a working control */
+/* Weekly review: an illustration of the weekly answer, not a working control */
 .note { box-shadow: var(--shadow-card); padding: var(--space-5); gap: var(--space-4); max-width: 28rem; justify-self: center; width: 100%; }
 .note__head { display: flex; justify-content: space-between; align-items: baseline; gap: var(--space-3); }
 .note__title { font-family: var(--font-display); font-size: var(--text-lg); font-weight: var(--weight-medium); color: var(--color-ink); }
