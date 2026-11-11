@@ -21,7 +21,13 @@ import Page from '../layouts/Page.astro';
               <input type="text" name="website" tabindex="-1" autocomplete="off" hidden>
               <button class="button button--primary" type="submit">Join the waitlist</button>
             </div>
-            <p data-cmokit-referral hidden>You're on the list. Share your link, and everyone who joins through it moves you up: <a></a></p>
+            <div data-cmokit-referral hidden class="referral">
+              <p>You're on the list. Share your link, and everyone who joins through it moves you up.</p>
+              <div class="referral__copy">
+                <a class="referral__link"></a>
+                <button class="button button--quiet button--small" type="button" data-copy-referral>Copy link</button>
+              </div>
+            </div>
           </form>
           <p class="waitlist__note">Joining sends you nothing. We'll let you know when your spot opens. Joining isn't beta access: read the <a href="/beta-terms/">closed beta terms</a> you'll accept then, and our <a href="/privacy/">privacy policy</a>.</p>
         </div>
@@ -134,6 +140,23 @@ import Page from '../layouts/Page.astro';
       shown.querySelector('a').href = shown.querySelector('a').textContent = answer.referral;
       shown.hidden = false;
       form.dispatchEvent(new CustomEvent('cmokit:joined', { bubbles: true, detail: { referral: answer.referral } }));
+    });
+  });
+  </script>
+
+  <script is:inline>
+  // The copy block around the referral link. It only reads the link the script above fills in.
+  document.querySelectorAll('[data-copy-referral]').forEach((button) => {
+    button.addEventListener('click', async () => {
+      const link = button.closest('[data-cmokit-referral]').querySelector('a');
+      try {
+        await navigator.clipboard.writeText(link.href);
+        button.textContent = 'Copied';
+      } catch {
+        getSelection().selectAllChildren(link);
+        button.textContent = 'Press Ctrl+C or ⌘C';
+      }
+      setTimeout(() => { button.textContent = 'Copy link'; }, 2500);
     });
   });
   </script>

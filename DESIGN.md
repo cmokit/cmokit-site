@@ -52,6 +52,8 @@ fields. Page width 72rem, reading width 40rem, gutter 16 to 32px.
 - **Waitlist**: `.waitlist` wraps the hosted form. Keep its field names, its
   `data-cmokit-waitlist` and `data-cmokit-referral` attributes and its script as the account page
   gives them.
+- **Referral**: `.referral` is the box shown after joining, with the person's link in a copy block
+  (`.referral__copy`) and a Copy link button. Its copy script is separate and only reads the link.
 - **Card**: `.card`, a surface with a hairline border. `.grid` lays cards out and wraps on phones.
 - **Steps**: `.steps`, an ordered list of cards, numbered automatically.
 - **Nav** and **footer**: in `src/layouts/Page.astro`, on every page.
