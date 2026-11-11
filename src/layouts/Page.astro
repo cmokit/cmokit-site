@@ -19,9 +19,13 @@ const { title } = Astro.props;
       form[data-cmokit-waitlist] [data-cmokit-referral] { flex-basis: 100%; margin: 0.5rem 0 0; }
       form[data-cmokit-waitlist] a { word-break: break-all; }
       [hidden] { display: none !important; }
+      footer { margin-top: 4rem; font-size: 0.875rem; }
     </style>
   </head>
   <body>
     <slot />
+    <footer>
+      <a href="/">CMO Kit</a> · <a href="/beta-terms/">Beta terms</a> · <a href="/privacy/">Privacy</a>
+    </footer>
   </body>
 </html>

@@ -29,6 +29,13 @@ design system.
 - Any change to the terms' text is a new version: change `version` and `TERMS_VERSION` together.
   The waitlist page links to the terms.
 
+## The privacy policy
+
+- `src/pages/privacy.astro` is the privacy policy at `https://cmokit.ai/privacy/`, linked from the
+  waitlist page, the beta terms and every page's footer. It says only what the site and the hosted
+  waitlist actually collect: change it, and its date, when either collects something new, such as
+  analytics.
+
 ## Deployment
 
 A push to `main` builds the site and deploys it to GitHub Pages. A pull request builds it only.
