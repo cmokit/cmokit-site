@@ -1,0 +1,31 @@
+---
+interface Props {
+  title: string;
+}
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <style is:global>
+      body { font-family: system-ui, sans-serif; max-width: 40rem; margin: 4rem auto; padding: 0 1rem; line-height: 1.5; }
+      form[data-cmokit-waitlist] { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 2rem; }
+      form[data-cmokit-waitlist] input { flex: 1; min-width: 12rem; padding: 0.5rem; font: inherit; }
+      form[data-cmokit-waitlist] button { padding: 0.5rem 1rem; font: inherit; }
+      form[data-cmokit-waitlist] [data-cmokit-referral] { flex-basis: 100%; margin: 0.5rem 0 0; }
+      form[data-cmokit-waitlist] a { word-break: break-all; }
+      [hidden] { display: none !important; }
+      footer { margin-top: 4rem; font-size: 0.875rem; }
+    </style>
+  </head>
+  <body>
+    <slot />
+    <footer>
+      <a href="/">CMO Kit</a> · <a href="/beta-terms/">Beta terms</a> · <a href="/privacy/">Privacy</a>
+    </footer>
+  </body>
+</html>
