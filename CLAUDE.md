@@ -21,6 +21,14 @@ design system.
 - Joining sends nothing. Activation happens on the account page, and the hosted waitlist sends no
   email yet, so the page must not promise one.
 
+## The beta terms
+
+- `src/pages/beta-terms.astro` is the closed beta terms at `https://cmokit.ai/beta-terms/`, which a
+  person accepts at their first sign-in after activation. The hosted content server's `TERMS_URL`
+  is that address and its `TERMS_VERSION` is the page's `version`.
+- Any change to the terms' text is a new version: change `version` and `TERMS_VERSION` together.
+  The waitlist page links to the terms.
+
 ## Deployment
 
 A push to `main` builds the site and deploys it to GitHub Pages. A pull request builds it only.
