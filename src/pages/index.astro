@@ -1,31 +1,36 @@
 ---
 // The closed beta's waitlist. A placeholder page until the site is designed from CMO Kit's design
-// system: it holds only the form and plain words.
+// system: it holds only the form and plain words. The form and its script are the ones CMO Kit's
+// account page at app.cmokit.ai gives for this brand; joins are taken only from pages on
+// https://cmokit.ai.
 import Page from '../layouts/Page.astro';
 ---
 
 <Page title="CMO Kit closed beta">
   <h1>CMO Kit closed beta</h1>
-  <p>Join the waitlist and we'll email you when your spot opens.</p>
-  <form data-cmokit-convert="waitlist_joined">
-    <input type="email" name="email" placeholder="you@example.com" required />
+  <p>Join the waitlist and we'll let you know when your spot opens.</p>
+  <form method="post" action="https://app.cmokit.ai/join/c0f559a8489d8735" data-cmokit-waitlist>
+    <input type="email" name="email" required placeholder="you@example.com" aria-label="Email">
+    <input type="text" name="website" tabindex="-1" autocomplete="off" hidden>
     <button type="submit">Join the waitlist</button>
+    <p data-cmokit-referral hidden>You're on the list. Share your link: <a></a></p>
   </form>
-  <p class="fine">Joining sends you nothing until your spot opens. Unsubscribe in one click from that email.</p>
-  <div class="thanks">
-    <p>You're on the list. We'll email you when your spot opens.</p>
-    <p class="referral" hidden>Share your own link, and everyone who joins through it moves you up the list: <a></a></p>
-  </div>
-  <script>
-    // The edge answers a join with the person's own referral link (ADR-0014 in cmokit/cmokit).
-    document.addEventListener('cmokit:converted', (event) => {
-      const referral = (event as CustomEvent<{ referral?: string }>).detail.referral;
-      const line = document.querySelector<HTMLElement>('.referral');
-      const link = line?.querySelector('a');
-      if (!referral || !line || !link) return;
-      link.href = referral;
-      link.textContent = referral;
-      line.hidden = false;
+  <p>Joining sends you nothing. Once you're on the list, everyone who joins through your link moves you up.</p>
+  <script is:inline>
+  document.querySelectorAll('form[data-cmokit-waitlist]').forEach((form) => {
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const body = new URLSearchParams(new FormData(form));
+      body.set('page', location.href);
+      body.set('ref', new URLSearchParams(location.search).get('ref') || '');
+      const response = await fetch(form.action, { method: 'POST', body, headers: { accept: 'application/json' } });
+      const answer = await response.json().catch(() => ({}));
+      if (!answer.referral) return alert(answer.problem || 'That did not work. Try again.');
+      const shown = form.querySelector('[data-cmokit-referral]');
+      shown.querySelector('a').href = shown.querySelector('a').textContent = answer.referral;
+      shown.hidden = false;
+      form.dispatchEvent(new CustomEvent('cmokit:joined', { bubbles: true, detail: { referral: answer.referral } }));
     });
+  });
   </script>
 </Page>

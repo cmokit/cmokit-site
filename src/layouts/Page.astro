@@ -11,14 +11,14 @@ const { title } = Astro.props;
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
-    <style>
+    <style is:global>
       body { font-family: system-ui, sans-serif; max-width: 40rem; margin: 4rem auto; padding: 0 1rem; line-height: 1.5; }
-      form { display: flex; gap: 0.5rem; margin-top: 2rem; }
-      input { flex: 1; padding: 0.5rem; }
-      button { padding: 0.5rem 1rem; }
-      form[data-cmokit-state='done'] { display: none; }
-      form[data-cmokit-state='done'] ~ .thanks { display: block; }
-      .thanks { display: none; }
+      form[data-cmokit-waitlist] { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 2rem; }
+      form[data-cmokit-waitlist] input { flex: 1; min-width: 12rem; padding: 0.5rem; font: inherit; }
+      form[data-cmokit-waitlist] button { padding: 0.5rem 1rem; font: inherit; }
+      form[data-cmokit-waitlist] [data-cmokit-referral] { flex-basis: 100%; margin: 0.5rem 0 0; }
+      form[data-cmokit-waitlist] a { word-break: break-all; }
+      [hidden] { display: none !important; }
     </style>
   </head>
   <body>
