@@ -1,8 +1,10 @@
 # CMO Kit's site
 
-CMO Kit's marketing site at cmokit.ai, a static Astro site on GitHub Pages. Today it holds the closed
-beta's waitlist form. The form posts to CMO Kit's hosted waitlist at app.cmokit.ai, which keeps the
+CMO Kit's marketing site at cmokit.ai, a static Astro site on GitHub Pages. Its home page holds the
+closed beta's waitlist form. The form posts to CMO Kit's hosted waitlist at app.cmokit.ai, which keeps the
 list and answers with the person's own referral link. The site runs no Worker and holds no key.
+
+The look comes from CMO Kit's design system, described in [DESIGN.md](DESIGN.md).
 
 ## Set up
 

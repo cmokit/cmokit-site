@@ -1,22 +1,125 @@
 ---
-// The closed beta's waitlist. A placeholder page until the site is designed from CMO Kit's design
-// system: it holds only the form and plain words. The form and its script are the ones CMO Kit's
-// account page at app.cmokit.ai gives for this brand; joins are taken only from pages on
-// https://cmokit.ai.
+// CMO Kit's home page and the closed beta's waitlist. The form and its script are the ones CMO
+// Kit's account page at app.cmokit.ai gives for this brand: keep the field names, the data
+// attributes and the script as given, and style freely. Joins are taken only from pages on
+// https://cmokit.ai. The weekly review is an illustration, and the page says so.
 import Page from '../layouts/Page.astro';
 ---
 
-<Page title="CMO Kit closed beta">
-  <h1>CMO Kit closed beta</h1>
-  <p>Join the waitlist and we'll let you know when your spot opens.</p>
-  <form method="post" action="https://app.cmokit.ai/join/c0f559a8489d8735" data-cmokit-waitlist>
-    <input type="email" name="email" required placeholder="you@example.com" aria-label="Email">
-    <input type="text" name="website" tabindex="-1" autocomplete="off" hidden>
-    <button type="submit">Join the waitlist</button>
-    <p data-cmokit-referral hidden>You're on the list. Share your link: <a></a></p>
-  </form>
-  <p>Joining sends you nothing. Once you're on the list, everyone who joins through your link moves you up.</p>
-  <p>Joining isn't access to the beta. Read the <a href="/beta-terms/">closed beta terms</a> you'll accept when your spot opens, and our <a href="/privacy/">privacy policy</a>.</p>
+<Page title="CMO Kit: take control of your content strategy">
+  <section class="hero">
+    <div class="container hero__inner">
+      <div class="hero__copy">
+        <p class="eyebrow">Closed beta · For independent creators</p>
+        <h1>Take control of your content strategy.</h1>
+        <p class="lead">CMO Kit plans your posts around what you sell, follows each one to the booking or sale it brought, then analyzes the results and recommends what to improve. It all happens in one conversation with Claude, and nothing goes out without your yes.</p>
+
+        <div id="join" class="hero__join">
+          <form method="post" action="https://app.cmokit.ai/join/c0f559a8489d8735" data-cmokit-waitlist class="waitlist">
+            <div class="waitlist__row">
+              <input class="field" type="email" name="email" required placeholder="you@example.com" aria-label="Email" autocomplete="email">
+              <input type="text" name="website" tabindex="-1" autocomplete="off" hidden>
+              <button class="button button--primary" type="submit">Join the waitlist</button>
+            </div>
+            <p data-cmokit-referral hidden>You're on the list. Share your link, and everyone who joins through it moves you up: <a></a></p>
+          </form>
+          <p class="waitlist__note">Joining sends you nothing. We'll let you know when your spot opens. Joining isn't beta access: read the <a href="/beta-terms/">closed beta terms</a> you'll accept then, and our <a href="/privacy/">privacy policy</a>.</p>
+        </div>
+      </div>
+
+      <figure class="card note" aria-label="An example of a weekly review from CMO Kit">
+        <div class="note__head">
+          <span class="note__title">Your weekly review</span>
+          <span class="note__tag">Example</span>
+        </div>
+        <div class="note__stat">
+          <span class="note__figure">9 of 14</span>
+          <span class="muted small">paid seats at Thursday's workshop came from one reel</span>
+        </div>
+        <p class="note__body">The two quote cards you posted brought no one.</p>
+        <div>
+          <p class="eyebrow">Recommended</p>
+          <ul class="note__list">
+            <li>Film one more moment like Thursday's and post it Tuesday.</li>
+            <li>Skip the quote cards for now.</li>
+            <li>Try the shorter event page against the current one.</li>
+          </ul>
+        </div>
+        <div class="note__foot">
+          <span>Ready when you are</span>
+          <span class="note__pill" aria-hidden="true">Approve the plan</span>
+        </div>
+      </figure>
+    </div>
+  </section>
+
+  <section class="section section--sunk" aria-labelledby="start">
+    <div class="container">
+      <div class="section__head">
+        <p class="eyebrow">Getting started</p>
+        <h2 id="start">Start with what you already have.</h2>
+        <p class="lead">No blank page and no new dashboard to learn. You talk it through, and CMO Kit does the planning and the counting.</p>
+      </div>
+      <ol class="steps">
+        <li class="card">
+          <h3>Bring your brand</h3>
+          <p>Share your brand book, your site or your recent posts. CMO Kit drafts your brand strategy from them for you to correct. Starting from scratch? It asks a few questions instead.</p>
+        </li>
+        <li class="card">
+          <h3>Name what you're selling</h3>
+          <p>An event, a course, a session or a product. CMO Kit plans posts, ads and page tests backwards from it, and gives each one its own tracked link.</p>
+        </li>
+        <li class="card">
+          <h3>Hear what worked</h3>
+          <p>It follows each link to the registration or sale on the pages where people actually buy, like Luma, Stripe or your shop. Each week it analyzes the results and recommends improvements.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="charge">
+    <div class="container">
+      <div class="section__head">
+        <p class="eyebrow">You stay in charge</p>
+        <h2 id="charge">Your strategy stays yours.</h2>
+      </div>
+      <div class="grid">
+        <div class="card">
+          <h3>Nothing goes out without your yes</h3>
+          <p>You approve every post, every ad and every dollar. CMO Kit never invents a quote, a result or a deadline.</p>
+        </div>
+        <div class="card">
+          <h3>Yours to keep</h3>
+          <p>Your brand strategy, and everything CMO Kit learns about what works for you, belong to you. Export it or take it with you any time.</p>
+        </div>
+        <div class="card">
+          <h3>Made from you</h3>
+          <p>Your footage, your words, your voice. No template feed, no hype, nothing that sounds like everyone else.</p>
+        </div>
+        <div class="card">
+          <h3>Open by default</h3>
+          <p>The code is open source, so anyone can read it or run it themselves.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--sunk" aria-labelledby="why">
+    <div class="container why">
+      <p class="eyebrow" id="why">Why we built it</p>
+      <blockquote>AI lets anyone make and optimize endless content, your competitors included. What stands out is what AI can't commoditize: your humanity.</blockquote>
+      <p class="lead">So CMO Kit takes on the planning, tracking and busywork of content, and leaves your energy for the creative work only you can do.</p>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="ready">
+    <div class="container closing">
+      <h2 id="ready">Less busywork. More room to create.</h2>
+      <p class="lead">The closed beta opens a few people at a time.</p>
+      <a class="button button--primary" href="#join">Join the waitlist</a>
+    </div>
+  </section>
+
   <script is:inline>
   document.querySelectorAll('form[data-cmokit-waitlist]').forEach((form) => {
     form.addEventListener('submit', async (event) => {
