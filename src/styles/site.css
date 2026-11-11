@@ -100,7 +100,10 @@ a:hover { color: var(--color-accent-strong); }
   background: var(--color-surface); border: 1px solid var(--color-line);
   border-radius: var(--radius-md); font-size: var(--text-sm);
 }
-.referral[hidden] { display: none; }
+.referral__place {
+  font-family: var(--font-display); font-size: var(--text-lg); font-weight: var(--weight-semibold);
+  color: var(--color-ink);
+}
 .referral__copy {
   display: flex; align-items: center; gap: var(--space-2);
   padding: var(--space-2) var(--space-2) var(--space-2) var(--space-3);

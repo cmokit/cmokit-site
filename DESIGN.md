@@ -49,11 +49,11 @@ fields. Page width 72rem, reading width 40rem, gutter 16 to 32px.
 - **Button**: `.button` plus `--primary` (accent, the one main action) or `--quiet` (outline);
   `--small` for the nav.
 - **Field**: `.field`, a pill input on the surface color.
-- **Waitlist**: `.waitlist` wraps the hosted form. Keep its field names, its
-  `data-cmokit-waitlist` and `data-cmokit-referral` attributes and its script as the account page
-  gives them.
-- **Referral**: `.referral` is the box shown after joining, with the person's link in a copy block
-  (`.referral__copy`) and a Copy link button. Its copy script is separate and only reads the link.
+- **Waitlist**: `.waitlist` wraps the hosted form. Keep its field names, its `data-cmokit-*`
+  attributes and its script as the account page gives them.
+- **Referral**: `.referral` is each box shown after joining. The first holds the place line
+  (`.referral__place`) and the person's link in a copy block (`.referral__copy`) with a Copy link
+  button, whose script is separate and only reads the link. The second is the Connect Instagram step.
 - **Card**: `.card`, a surface with a hairline border. `.grid` lays cards out and wraps on phones.
 - **Steps**: `.steps`, an ordered list of cards, numbered automatically.
 - **Nav** and **footer**: in `src/layouts/Page.astro`, on every page.

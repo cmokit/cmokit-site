@@ -1,8 +1,9 @@
 ---
 // CMO Kit's home page and the closed beta's waitlist. The form and its script are the ones CMO
-// Kit's account page at app.cmokit.ai gives for this brand: keep the field names, the data
-// attributes and the script as given, and style freely. Joins are taken only from pages on
-// https://cmokit.ai. The weekly review is an illustration, and the page says so.
+// Kit's account page at app.cmokit.ai gives for this brand: join, then place and referral link,
+// then Connect Instagram, which the hosted waitlist shows only once it offers it. Keep the field
+// names, the data attributes and the script as given, and style freely. Joins are taken only from
+// pages on https://cmokit.ai. The weekly review is an illustration, and the page says so.
 import Page from '../layouts/Page.astro';
 ---
 
@@ -15,20 +16,26 @@ import Page from '../layouts/Page.astro';
         <p class="lead">CMO Kit plans your posts around what you sell, follows each one to the booking or sale it brought, then analyzes the results and recommends what to improve. It all happens in one conversation with Claude, and nothing goes out without your yes.</p>
 
         <div id="join" class="hero__join">
-          <form method="post" action="https://app.cmokit.ai/join/c0f559a8489d8735" data-cmokit-waitlist class="waitlist">
-            <div class="waitlist__row">
+          <div class="waitlist" data-cmokit-waitlist>
+            <form class="waitlist__row" method="post" action="https://app.cmokit.ai/join/c0f559a8489d8735" data-cmokit-join>
               <input class="field" type="email" name="email" required placeholder="you@example.com" aria-label="Email" autocomplete="email">
               <input type="text" name="website" tabindex="-1" autocomplete="off" hidden>
               <button class="button button--primary" type="submit">Join the waitlist</button>
-            </div>
-            <div data-cmokit-referral hidden class="referral">
-              <p>You're on the list. Share your link, and everyone who joins through it moves you up.</p>
+            </form>
+            <div class="referral" data-cmokit-joined hidden>
+              <p class="referral__place" data-cmokit-place role="status">You're on the list.</p>
+              <p>Boost your place: share your referral link. Everyone who joins through it moves you up.</p>
               <div class="referral__copy">
-                <a class="referral__link"></a>
+                <a class="referral__link" data-cmokit-referral></a>
                 <button class="button button--quiet button--small" type="button" data-copy-referral>Copy link</button>
               </div>
             </div>
-          </form>
+            <div class="referral" data-cmokit-instagram hidden>
+              <p>Boost even more: connect your Instagram, then comment on our Reels. Each Reel you comment on moves you up.</p>
+              <p><a class="button button--primary button--small" data-cmokit-connect>Connect Instagram</a></p>
+              <p class="muted small">This needs an Instagram business or creator account. You can switch to one in Instagram's settings.</p>
+            </div>
+          </div>
           <p class="waitlist__note">Joining sends you nothing. We'll let you know when your spot opens. Joining isn't beta access: read the <a href="/beta-terms/">closed beta terms</a> you'll accept then, and our <a href="/privacy/">privacy policy</a>.</p>
         </div>
       </div>
@@ -127,19 +134,26 @@ import Page from '../layouts/Page.astro';
   </section>
 
   <script is:inline>
-  document.querySelectorAll('form[data-cmokit-waitlist]').forEach((form) => {
-    form.addEventListener('submit', async (event) => {
+  document.querySelectorAll('[data-cmokit-waitlist]').forEach((box) => {
+    const join = box.querySelector('[data-cmokit-join]');
+    join.addEventListener('submit', async (event) => {
       event.preventDefault();
-      const body = new URLSearchParams(new FormData(form));
+      const body = new URLSearchParams(new FormData(join));
       body.set('page', location.href);
       body.set('ref', new URLSearchParams(location.search).get('ref') || '');
-      const response = await fetch(form.action, { method: 'POST', body, headers: { accept: 'application/json' } });
+      const response = await fetch(join.action, { method: 'POST', body, headers: { accept: 'application/json' } });
       const answer = await response.json().catch(() => ({}));
       if (!answer.referral) return alert(answer.problem || 'That did not work. Try again.');
-      const shown = form.querySelector('[data-cmokit-referral]');
-      shown.querySelector('a').href = shown.querySelector('a').textContent = answer.referral;
-      shown.hidden = false;
-      form.dispatchEvent(new CustomEvent('cmokit:joined', { bubbles: true, detail: { referral: answer.referral } }));
+      const link = box.querySelector('[data-cmokit-referral]');
+      link.href = link.textContent = answer.referral;
+      if (answer.place) box.querySelector('[data-cmokit-place]').textContent = "You're number " + answer.place + ' on the list.';
+      join.hidden = true;
+      box.querySelector('[data-cmokit-joined]').hidden = false;
+      if (answer.instagram) {
+        box.querySelector('[data-cmokit-connect]').href = answer.instagram;
+        box.querySelector('[data-cmokit-instagram]').hidden = false;
+      }
+      box.dispatchEvent(new CustomEvent('cmokit:joined', { bubbles: true, detail: { referral: answer.referral, place: answer.place ?? null } }));
     });
   });
   </script>
@@ -148,7 +162,7 @@ import Page from '../layouts/Page.astro';
   // The copy block around the referral link. It only reads the link the script above fills in.
   document.querySelectorAll('[data-copy-referral]').forEach((button) => {
     button.addEventListener('click', async () => {
-      const link = button.closest('[data-cmokit-referral]').querySelector('a');
+      const link = button.closest('.referral').querySelector('[data-cmokit-referral]');
       try {
         await navigator.clipboard.writeText(link.href);
         button.textContent = 'Copied';
