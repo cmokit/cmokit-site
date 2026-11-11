@@ -1,31 +1,59 @@
 ---
+// Every page's frame: fonts, design tokens, nav and footer. The fonts are self-hosted from the
+// Fontsource packages, so a visit asks nothing of any server but GitHub Pages, as the privacy
+// policy says.
+import '@fontsource-variable/schibsted-grotesk/wght.css';
+import '@fontsource-variable/instrument-sans/wght.css';
+import '../styles/tokens.css';
+import '../styles/site.css';
+
 interface Props {
   title: string;
+  description?: string;
 }
-const { title } = Astro.props;
+const {
+  title,
+  description = 'CMO Kit plans your posts around what you sell, shows you which ones brought people in, and leaves every decision with you. Join the closed beta waitlist.',
+} = Astro.props;
 ---
 
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <title>{title}</title>
-    <style is:global>
-      body { font-family: system-ui, sans-serif; max-width: 40rem; margin: 4rem auto; padding: 0 1rem; line-height: 1.5; }
-      form[data-cmokit-waitlist] { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 2rem; }
-      form[data-cmokit-waitlist] input { flex: 1; min-width: 12rem; padding: 0.5rem; font: inherit; }
-      form[data-cmokit-waitlist] button { padding: 0.5rem 1rem; font: inherit; }
-      form[data-cmokit-waitlist] [data-cmokit-referral] { flex-basis: 100%; margin: 0.5rem 0 0; }
-      form[data-cmokit-waitlist] a { word-break: break-all; }
-      [hidden] { display: none !important; }
-      footer { margin-top: 4rem; font-size: 0.875rem; }
-    </style>
+    <meta name="description" content={description} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta name="theme-color" content="#f2efe8" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#141613" media="(prefers-color-scheme: dark)" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
   </head>
   <body>
-    <slot />
-    <footer>
-      <a href="/">CMO Kit</a> · <a href="/beta-terms/">Beta terms</a> · <a href="/privacy/">Privacy</a>
+    <a class="skip" href="#main">Skip to content</a>
+    <header class="nav">
+      <div class="container nav__inner">
+        <a class="wordmark" href="/" aria-label="CMO Kit home">
+          <svg class="wordmark__mark" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="10.5" fill="none" stroke="currentColor" stroke-width="5" stroke-dasharray="52 14" stroke-linecap="round" transform="rotate(-50 16 16)" /></svg>
+          CMO Kit
+        </a>
+        <a class="button button--quiet button--small" href="/#join">Join the waitlist</a>
+      </div>
+    </header>
+    <main id="main">
+      <slot />
+    </main>
+    <footer class="footer">
+      <div class="container footer__inner">
+        <span>CMO Kit</span>
+        <nav aria-label="Footer">
+          <a href="/beta-terms/">Beta terms</a>
+          <a href="/privacy/">Privacy</a>
+          <a href="mailto:hello@cmokit.ai">hello@cmokit.ai</a>
+        </nav>
+      </div>
     </footer>
   </body>
 </html>

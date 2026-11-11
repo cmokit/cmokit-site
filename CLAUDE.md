@@ -3,8 +3,10 @@
 CMO Kit's marketing site at cmokit.ai: a static Astro site on GitHub Pages, with no Worker of its
 own. `www.cmokit.ai` redirects to `cmokit.ai` through GitHub Pages.
 
-The home page is a placeholder holding the waitlist form, until the site is designed from CMO Kit's
-design system.
+The home page holds the waitlist form. Every page is styled from CMO Kit's design system:
+`DESIGN.md` describes it, `src/styles/tokens.css` holds its tokens and `src/styles/site.css` its
+components. Fonts are self-hosted through Fontsource, so a visit calls no third party, as the
+privacy policy says; don't link Google Fonts or any other host.
 
 ## The waitlist
 
