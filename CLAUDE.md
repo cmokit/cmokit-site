@@ -21,6 +21,9 @@ privacy policy says; don't link Google Fonts or any other host.
   to comment on CMO Kit's Reels, which stays hidden until the hosted waitlist offers it. Keep the
   field names (`email`, and `website`, a field only bots fill in), every `data-cmokit-*` attribute
   and the script's logic as the account page gives them. Style it freely. The script fires `cmokit:joined` for any hook.
+- The script also counts the page as a visit, once a browser session (`sessionStorage`), posting
+  `visit` and the page to the same address with no cookie or identity. The hosted waitlist keeps only
+  daily counts per page and `utm_` tags, so its funnel shows visits and joins per source.
 - The form sends the page's address, and the hosted waitlist keeps its `utm_` tags with each signup,
   so links in posts can carry them.
 - Joining sends nothing. Activation happens on the account page, and the hosted waitlist sends no
