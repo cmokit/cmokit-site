@@ -1,7 +1,8 @@
 ---
 // CMO Kit's home page and the closed beta's waitlist. The form and its script are the ones CMO
 // Kit's account page at app.cmokit.ai gives for this brand: join, then place and referral link,
-// then an Instagram code to comment on our Reels, which the hosted waitlist shows only once it offers it. Keep the field
+// then an Instagram code to comment on our Reels, which the hosted waitlist shows only once it offers it.
+// The script also counts the page as a visit, once a browser session, with no cookie or identity. Keep the field
 // names, the data attributes and the script as given, and style freely. Joins are taken only from
 // pages on https://cmokit.ai. The weekly review is an illustration, and the page says so.
 import Page from '../layouts/Page.astro';
@@ -137,6 +138,14 @@ import Page from '../layouts/Page.astro';
   </section>
 
   <script is:inline>
+  // Counts this page as a visit for the brand's funnel, once a session; it sends no cookie and no identity.
+  try {
+    const seen = 'cmokit-visit:' + location.pathname;
+    if (!sessionStorage.getItem(seen)) {
+      sessionStorage.setItem(seen, '1');
+      fetch('https://app.cmokit.ai/join/c0f559a8489d8735', { method: 'POST', mode: 'no-cors', credentials: 'omit', keepalive: true, body: new URLSearchParams({ visit: '1', page: location.href }) });
+    }
+  } catch {}
   document.querySelectorAll('[data-cmokit-waitlist]').forEach((box) => {
     const join = box.querySelector('[data-cmokit-join]');
     join.addEventListener('submit', async (event) => {
