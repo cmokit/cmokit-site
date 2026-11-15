@@ -1,24 +1,40 @@
 /*
- * CMO Kit design tokens. Reserved in structure, warm in feel: earthy neutrals, one confident
- * accent (spruce), a sturdy grotesk for headings and a softer sans for everything else. DESIGN.md says
- * how to use them. Every color pair here meets WCAG AA for its use.
+ * CMO Kit design tokens, from CMO Kit's design system in Claude Design, which is the source of
+ * truth. Reserved in structure, warm in feel: plant and earth pigments (elderberry, lupine, cedar,
+ * sage, buckskin), a sturdy grotesk for headings and a softer sans for everything else. DESIGN.md
+ * says how to use them. Every text pair here meets WCAG AA for its use.
  */
 :root {
+  /* Pigments: plant and earth colors. They only feed the semantic tokens below. */
+  --elderberry: #4a3550;        /* the primary */
+  --lupine: #8e7ba6;            /* the accent; too light for text on buckskin */
+  --cedar: #2f4a3a;             /* the deep green */
+  --sage: #8a9a74;              /* the soft green; quiet fills only, never text */
+  --buckskin: #efe6d4;          /* the cream base */
+
   /* Color, light */
-  --color-bg: #f2efe8;          /* linen: the page */
-  --color-surface: #fffcf6;     /* paper: cards and fields */
-  --color-surface-sunk: #e9e4da;/* a quieter band behind a section */
-  --color-ink: #1f1c18;         /* text, 14.8:1 on bg */
-  --color-ink-muted: #5c564e;   /* secondary text, 6.3:1 on bg, 5.7:1 on sunk */
-  --color-line: #ddd5c8;        /* hairlines and borders */
-  --color-accent: #2d5a4a;      /* spruce: the one accent, 6.8:1 on bg */
-  --color-accent-strong: #234839;
-  --color-on-accent: #ffffff;   /* text on spruce, 7.9:1 */
-  --color-focus: #2d5a4a;
+  --color-bg: var(--buckskin);  /* the page */
+  --color-surface: #f8f3e9;     /* cards and fields */
+  --color-surface-sunk: #e4d8c1;/* a quieter band behind a section, the copy block */
+  --color-ink: #2b2130;         /* body text, 12.4:1 on bg */
+  --color-heading: var(--elderberry); /* headlines, 8.8:1 on bg */
+  --color-ink-muted: var(--cedar);    /* sublines and notes, 7.8:1 on bg */
+  --color-line: #d9cdb6;        /* hairlines, decorative only */
+  --color-line-strong: #857766; /* borders of fields and quiet buttons, 3.1:1 or better */
+  --color-accent: var(--elderberry);  /* the main action and the mark */
+  --color-accent-strong: #3a2840;     /* hover of the main action */
+  --color-on-accent: var(--buckskin); /* text on the accent, 8.8:1 */
+  --color-link: #655282;        /* a deeper lupine, 5.5:1 on bg, 4.8:1 on sunk */
+  --color-link-hover: var(--elderberry);
+  --color-highlight: var(--lupine);   /* bullets and small marks on bg or surface */
+  --color-tag-bg: #d3dbc6;      /* a sage tint */
+  --color-tag-ink: var(--cedar);/* 6.8:1 on tag-bg */
+  --color-focus: var(--color-accent);
 
   /* Type */
   --font-display: 'Schibsted Grotesk Variable', system-ui, -apple-system, 'Segoe UI', sans-serif;
   --font-body: 'Instrument Sans Variable', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
   --text-xs: 0.8125rem;   /* 13 */
   --text-sm: 0.9375rem;   /* 15 */
   --text-base: 1.0625rem; /* 17 */
@@ -60,31 +76,45 @@
 /* Color, dark. Follows the visitor's setting; data-theme forces either. */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme='light']) {
-    --color-bg: #141613;
-    --color-surface: #1d201c;
-    --color-surface-sunk: #191b18;
-    --color-ink: #ece8df;
-    --color-ink-muted: #a39c90;
-    --color-line: #33362f;
-    --color-accent: #86c2a9;
-    --color-accent-strong: #a3d3bf;
-    --color-on-accent: #141613;
-    --color-focus: #86c2a9;
+    --color-bg: #1b161e;
+    --color-surface: #241e28;
+    --color-surface-sunk: #201a23;
+    --color-ink: var(--buckskin);
+    --color-heading: #c9bcdd;
+    --color-ink-muted: #aebe98;
+    --color-line: #3a3140;
+    --color-line-strong: #7d6e86;
+    --color-accent: #b3a3cb;
+    --color-accent-strong: #c9bcdd;
+    --color-on-accent: #1b161e;
+    --color-link: #b3a3cb;
+    --color-link-hover: #c9bcdd;
+    --color-highlight: var(--lupine);
+    --color-tag-bg: #2a3a2f;
+    --color-tag-ink: #c3cfb2;
+    --color-focus: var(--color-accent);
     --shadow-card: 0 1px 2px rgb(0 0 0 / 0.3), 0 8px 24px rgb(0 0 0 / 0.25);
     color-scheme: dark;
   }
 }
 :root[data-theme='dark'] {
-  --color-bg: #141613;
-  --color-surface: #1d201c;
-  --color-surface-sunk: #191b18;
-  --color-ink: #ece8df;
-  --color-ink-muted: #a39c90;
-  --color-line: #33362f;
-  --color-accent: #86c2a9;
-  --color-accent-strong: #a3d3bf;
-  --color-on-accent: #141613;
-  --color-focus: #86c2a9;
+  --color-bg: #1b161e;
+  --color-surface: #241e28;
+  --color-surface-sunk: #201a23;
+  --color-ink: var(--buckskin);
+  --color-heading: #c9bcdd;
+  --color-ink-muted: #aebe98;
+  --color-line: #3a3140;
+  --color-line-strong: #7d6e86;
+  --color-accent: #b3a3cb;
+  --color-accent-strong: #c9bcdd;
+  --color-on-accent: #1b161e;
+  --color-link: #b3a3cb;
+  --color-link-hover: #c9bcdd;
+  --color-highlight: var(--lupine);
+  --color-tag-bg: #2a3a2f;
+  --color-tag-ink: #c3cfb2;
+  --color-focus: var(--color-accent);
   --shadow-card: 0 1px 2px rgb(0 0 0 / 0.3), 0 8px 24px rgb(0 0 0 / 0.25);
   color-scheme: dark;
 }
