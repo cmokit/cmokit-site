@@ -5,8 +5,8 @@ own. `www.cmokit.ai` redirects to `cmokit.ai` through GitHub Pages.
 
 The home page holds the waitlist form. Every page is styled from CMO Kit's design system:
 `DESIGN.md` describes it, `src/styles/tokens.css` holds its tokens and `src/styles/site.css` its
-components. Fonts are self-hosted through Fontsource, so a visit calls no third party, as the
-privacy policy says; don't link Google Fonts or any other host.
+components. Fonts are self-hosted through Fontsource, so the only third party a visit reaches is
+Meta, through its Pixel, as the privacy policy says; don't link Google Fonts or any other host.
 
 ## The waitlist
 
@@ -28,6 +28,16 @@ privacy policy says; don't link Google Fonts or any other host.
   so links in posts can carry them.
 - Joining sends nothing. Activation happens on the account page, and the hosted waitlist sends no
   email yet, so the page must not promise one.
+
+## The Meta Pixel
+
+- `src/layouts/Page.astro` loads Meta's Pixel on every page, with a `PageView`, and sends a `Lead`
+  when the form fires `cmokit:joined`, so only on a join that succeeded. It measures the boosted
+  Reels and builds website audiences for retargeting.
+- It loads only when `metaPixelId` in `src/config.ts` holds the Pixel's ID from Meta Events Manager.
+  The ID is public, not a secret.
+- The privacy policy says the Pixel sends Meta no email address, so keep automatic advanced matching
+  off in Events Manager, or change the policy and its date.
 
 ## The beta terms
 

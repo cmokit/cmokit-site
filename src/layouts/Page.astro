@@ -1,11 +1,12 @@
 ---
-// Every page's frame: fonts, design tokens, nav and footer. The fonts are self-hosted from the
-// Fontsource packages, so a visit asks nothing of any server but GitHub Pages, as the privacy
-// policy says.
+// Every page's frame: fonts, design tokens, the Meta Pixel, nav and footer. The fonts are
+// self-hosted from the Fontsource packages, so the only third party a visit reaches is Meta, through
+// its Pixel, as the privacy policy says. The Pixel loads only when src/config.ts holds its ID.
 import '@fontsource-variable/schibsted-grotesk/wght.css';
 import '@fontsource-variable/instrument-sans/wght.css';
 import '../styles/tokens.css';
 import '../styles/site.css';
+import { metaPixelId } from '../config';
 
 interface Props {
   title: string;
@@ -30,6 +31,20 @@ const {
     <meta name="theme-color" content="#efe6d4" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#1b161e" media="(prefers-color-scheme: dark)" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    {metaPixelId && (
+      <script is:inline define:vars={{ metaPixelId }}>
+      // Meta's Pixel base code: a PageView on every page, and a Lead when the waitlist form says a
+      // join succeeded (its cmokit:joined event), never on submit alone.
+      !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+      n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+      document,'script','https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', metaPixelId);
+      fbq('track', 'PageView');
+      document.addEventListener('cmokit:joined', () => fbq('track', 'Lead'));
+      </script>
+    )}
   </head>
   <body>
     <a class="skip" href="#main">Skip to content</a>
