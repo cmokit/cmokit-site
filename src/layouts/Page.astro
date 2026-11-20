@@ -6,7 +6,7 @@ import '@fontsource-variable/schibsted-grotesk/wght.css';
 import '@fontsource-variable/instrument-sans/wght.css';
 import '../styles/tokens.css';
 import '../styles/site.css';
-import { metaPixelId } from '../config';
+import { metaDomainVerification, metaPixelId } from '../config';
 
 interface Props {
   title: string;
@@ -31,6 +31,7 @@ const {
     <meta name="theme-color" content="#efe6d4" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#1b161e" media="(prefers-color-scheme: dark)" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    {metaDomainVerification && <meta name="facebook-domain-verification" content={metaDomainVerification} />}
     {metaPixelId && (
       <script is:inline define:vars={{ metaPixelId }}>
       // Meta's Pixel base code: a PageView on every page, and a Lead when the waitlist form says a
