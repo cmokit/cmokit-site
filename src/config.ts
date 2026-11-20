@@ -2,4 +2,4 @@
 
 // The Meta Pixel's ID, from Meta Events Manager under Data sources. While it is empty, the site
 // loads no Pixel and sends Meta nothing.
-export const metaPixelId = '';
+export const metaPixelId = '29147257668267740';
