@@ -50,9 +50,10 @@ Meta, through its Pixel, as the privacy policy says; don't link Google Fonts or 
 ## The privacy policy
 
 - `src/pages/privacy.astro` is the privacy policy at `https://cmokit.ai/privacy/`, linked from the
-  waitlist page, the beta terms and every page's footer. It says only what the site and the hosted
-  waitlist actually collect: change it, and its date, when either collects something new, such as
-  analytics.
+  waitlist page, the beta terms and every page's footer. It covers the site, the waitlist and the
+  hosted app (app, auth and mcp at cmokit.ai, built from cmokit/cmokit), and says only what they
+  actually collect, keep and share: change it, and its date, when any of them collects something new
+  or adds a service that handles people's data, such as analytics.
 
 ## Deployment
 

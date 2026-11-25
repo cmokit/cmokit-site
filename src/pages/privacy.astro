@@ -1,40 +1,63 @@
 ---
-// CMO Kit's privacy policy. It says only what the site and the hosted waitlist do: change it when
-// either starts collecting something new.
+// CMOKit's privacy policy. It says only what the site, the waitlist and the hosted app
+// (app.cmokit.ai, auth.cmokit.ai and the MCP server at mcp.cmokit.ai, all in cmokit/cmokit) actually
+// collect, keep and share: change it, and its date, when any of them starts collecting something new.
 import Page from '../layouts/Page.astro';
 
-const updated = 'November 18, 2026';
+const updated = 'November 25, 2026';
 ---
 
-<Page title="CMO Kit privacy policy">
+<Page title="CMOKit privacy policy">
   <article class="container"><div class="prose">
-  <h1>CMO Kit privacy policy</h1>
+  <h1>CMOKit privacy policy</h1>
   <p>Last updated {updated}</p>
 
-  <p>cmokit.ai is run by Growth Science LLC, in New York. This policy covers this site and the CMO Kit waitlist. For questions, or to see, correct or delete what we hold about you, write to <a href="mailto:hello@cmokit.ai">hello@cmokit.ai</a>.</p>
+  <p>CMOKit is run by Growth Science LLC, in New York. This policy covers this site, the CMOKit waitlist and the CMOKit app: the account page at app.cmokit.ai, sign-in at auth.cmokit.ai, and the connector your Claude uses at mcp.cmokit.ai. The waitlist is part of the app. For questions, or to see, correct or delete what we hold about you, write to <a href="mailto:hello@cmokit.ai">hello@cmokit.ai</a>.</p>
 
-  <h2>What we collect</h2>
+  <h2>When you visit this site</h2>
   <ul>
-    <li><strong>When you visit:</strong> once per browser session, the home page tells our waitlist that the page was visited, sending its address. Of that address we keep only a daily count of visits for the page and its campaign tags (the <code>utm_</code> ones, such as which post you came from), with nothing that identifies you. Our host, GitHub Pages, logs each visitor's IP address for security.</li>
+    <li><strong>Visit counts:</strong> once per browser session, the home page tells our waitlist that the page was visited, sending its address. Of that address we keep only a daily count of visits for the page and its campaign tags (the <code>utm_</code> ones, such as which post you came from), with nothing that identifies you. Our host, GitHub Pages, logs each visitor's IP address for security.</li>
     <li><strong>Meta's Pixel:</strong> every page loads Meta's Pixel, which tells Meta that you viewed the page and, if you join the waitlist, that you joined. It sends Meta the page's address, your browser's details and IP address, and a Meta cookie it sets in your browser, which Meta may link to a Facebook or Instagram account. It doesn't send Meta your email address. We use it to see which of our ads bring people to the waitlist, and to show our ads to people who visited this site.</li>
-    <li><strong>When you join the waitlist:</strong> your email address, when you joined, your own referral code, the code of the person whose link you joined through, if any, and when we let you in. The form also sends the address of the page you joined on, which builds your referral link. Of that address we keep only the page and its campaign tags.</li>
-    <li><strong>If you comment your code on our Reels:</strong> we read the public comments on our recent Reels to match your code to your Instagram username, then keep that username and which of those Reels you commented on.</li>
-    <li><strong>When you email us:</strong> your message and your address.</li>
   </ul>
 
+  <h2>When you join the waitlist</h2>
+  <ul>
+    <li><strong>Your entry:</strong> your email address, when you joined, your own referral code, the code of the person whose link you joined through, if any, and when we let you in or declined. The form also sends the address of the page you joined on, which builds your referral link. Of that address we keep only the page and its campaign tags. Your IP address is used to limit how often one address can join, and isn't kept with your entry.</li>
+    <li><strong>If you comment your code on our Reels:</strong> we read the public comments on our recent Reels, with the username and text of each, to match your code to your Instagram username. We keep that username and how many of those Reels you commented on, and nothing else from the comments.</li>
+  </ul>
+
+  <h2>When you use CMOKit</h2>
+  <ul>
+    <li><strong>Signing in:</strong> which way you signed in and that service's ID for you. With an emailed code or Google, your email address; with GitHub, its primary verified email address; with Instagram, your Instagram account's ID and username; with Facebook, no email address. Sign-in codes are kept only as a scrambled hash, until they expire. We also keep when we sent you codes, to limit how many can be sent, and the brands you belong to, with the names you gave them.</li>
+    <li><strong>The beta terms:</strong> which version of the terms you accepted, and when.</li>
+    <li><strong>Your brand context:</strong> what you and your Claude save about your brand, such as its positioning, audiences, values, voice, examples and what it sells, with every past version, who approved each change and why. A brand sprint's answers are saved here. Because a brand often reflects its founder, this can describe you.</li>
+    <li><strong>Your pieces:</strong> each post planned, drafted, approved, rejected or posted, with its brief and approved text, your reasons for rejecting one, where and when it was posted, its tracked links, the numbers you report for it and the results counted for it. We keep a record of each step, with who took it. We don't keep your videos, photos or other footage.</li>
+    <li><strong>Your Instagram account, if you connect it:</strong> its ID, its username and an access token for the business portfolio that owns it, which we keep encrypted. We use it to read your recent Reels and their public comments, with each commenter's username and the text, only to match people on your own waitlist to the codes they comment. Disconnecting it deletes the token.</li>
+    <li><strong>Your event platform, if you connect it:</strong> your Luma calendar's ID and name, and its API key, which we keep encrypted. We read your events and their guest lists to count registrations, check-ins and revenue for each piece, and keep only those counts. We don't keep your events or your guests' details.</li>
+    <li><strong>Your Claude:</strong> when your Claude first connected to each brand. What CMOKit returns to your Claude, such as your brand context, then sits in your conversation with Claude, under your own agreement with Anthropic.</li>
+    <li><strong>Your own waitlist:</strong> if your brand runs a waitlist through CMOKit, we keep the same entries and visit counts for it as we do for ours, described above. You decide who is on it and what you do with it, and we handle it only to run it for you.</li>
+  </ul>
+
+  <h2>When you email us</h2>
+  <p>Your message and your address.</p>
+
   <h2>How we use it</h2>
-  <p>To keep the waitlist, rank it by how many people joined through each person's link and how many of our Reels each person commented on, see which posts bring people in and what share of visitors join, let you into the beta when your spot opens, and answer your email. We don't sell it. The only advertising use is Meta's Pixel, described above, for our own ads.</p>
+  <p>To run the waitlist, rank it by how many people joined through each person's link and how many of the brand's Reels each person commented on, see which posts bring people in and what share of visitors join, and let you into the beta when your spot opens. To sign you in, keep your brand's records, connect the accounts you choose, and show you which posts brought people in. To answer your email. We don't sell it. The only advertising use is Meta's Pixel, described above, for our own ads.</p>
 
   <h2>Who handles it for us</h2>
   <ul>
-    <li><strong>GitHub</strong> hosts this site.</li>
-    <li><strong>Cloudflare</strong> runs app.cmokit.ai, which keeps the waitlist and limits how often one address can join.</li>
-    <li><strong>Meta</strong> runs Instagram, where we read the comments on our Reels, and receives what its Pixel collects on this site, under <a href="https://www.facebook.com/privacy/policy/">Meta's own privacy policy</a>.</li>
+    <li><strong>GitHub</strong> hosts this site, and is a way to sign in if you choose it.</li>
+    <li><strong>Cloudflare</strong> runs app.cmokit.ai, auth.cmokit.ai and mcp.cmokit.ai, stores everything the app keeps, limits how often one address can join a waitlist, and keeps logs of requests to the app to run and secure it.</li>
+    <li><strong>Twilio SendGrid</strong> sends the sign-in codes we email you.</li>
+    <li><strong>Google</strong> and <strong>Meta</strong> (Facebook and Instagram) are ways to sign in if you choose them.</li>
+    <li><strong>Meta</strong> also runs Instagram, where we read the comments on our Reels and, if you connect your account, on yours, and receives what its Pixel collects on this site, under <a href="https://www.facebook.com/privacy/policy/">Meta's own privacy policy</a>.</li>
+    <li><strong>Luma</strong> holds your events, if you connect it, and we read them as described above.</li>
+    <li><strong>Anthropic</strong> runs Claude, which you use CMOKit through. What CMOKit returns to your Claude is handled under your own agreement with Anthropic.</li>
     <li><strong>Google Workspace</strong> holds email sent to hello@cmokit.ai.</li>
   </ul>
 
   <h2>How long we keep it</h2>
-  <p>We keep your waitlist entry while the beta runs, or until you ask us to delete it.</p>
+  <p>We keep your waitlist entry while the beta runs, and your account and your brand's records while you use CMOKit, or until you ask us to delete them. You can download everything your brand's records hold from your account page at app.cmokit.ai. To delete your account or your brand's records, write to <a href="mailto:hello@cmokit.ai">hello@cmokit.ai</a>.</p>
 
   <h2>Changes</h2>
   <p>If we change this policy, we'll post the new version here with a new date.</p>
