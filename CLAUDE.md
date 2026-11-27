@@ -42,9 +42,10 @@ Meta, through its Pixel, as the privacy policy says; don't link Google Fonts or 
 ## The beta terms
 
 - `src/pages/beta-terms.astro` is the closed beta terms at `https://cmokit.ai/beta-terms/`, which a
-  person accepts at their first sign-in after activation. The hosted content server's `TERMS_URL`
-  is that address and its `TERMS_VERSION` is the page's `version`.
-- Any change to the terms' text is a new version: change `version` and `TERMS_VERSION` together.
+  person accepts at their first sign-in after activation. The hosted app reads the version from
+  the page's "Version" line, so that line must stay.
+- Any change to the terms' text is a new version: change `version` and merge. Within five minutes
+  everyone is asked to accept again, with no change in the app.
   The waitlist page links to the terms.
 
 ## The privacy policy
